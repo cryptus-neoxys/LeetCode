@@ -14,7 +14,7 @@ class Solution {
         for (ListNode node = head; node != null; node = node.next) A.add(node.val);
         int[] res = new int[A.size()];
         for(int i = 0; i < A.size(); ++i) res[i] = A.get(i);
-        Stack<Integer> stack = new Stack<>();
+        Deque<Integer> stack = new ArrayDeque<>();
         
         for(int i = A.size() - 1; i >= 0; --i) {
             int val = res[i];
