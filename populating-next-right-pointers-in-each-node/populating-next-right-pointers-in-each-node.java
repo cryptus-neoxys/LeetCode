@@ -35,6 +35,6 @@ class Solution {
         root.next = next;
         
         dfs(root.left, root.right);
-        dfs(root.right, root.next == null ? null : root.next.left);
+        dfs(root.right, root.next != null ? root.next.left : null);
     }
 }
