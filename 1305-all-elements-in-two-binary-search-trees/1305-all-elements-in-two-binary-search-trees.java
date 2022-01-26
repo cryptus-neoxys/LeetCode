@@ -14,52 +14,32 @@
  * }
  */
 class Solution {
-    
-    private List<Integer> arr;
-    
-    private void helper(TreeNode root, List tree) {
-        if(root != null) {
-            helper(root.left, tree);
-            tree.add(root.val);
-            helper(root.right, tree);
-        }
-    }
-    
-    private List<Integer> merge(List<Integer> tree1, List<Integer> tree2) {
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        Stack<TreeNode> st1 = new Stack<>();
+        Stack<TreeNode> st2 = new Stack<>();
         List<Integer> res = new ArrayList<Integer>();
         
-        int p = 0, q = 0, m = tree1.size(), n = tree2.size();
-        
-        while(p < m && q < n) {
-            if(tree1.get(p) < tree2.get(q)) {
-                res.add(tree1.get(p));
-                p++;
+        while(root1 != null || !st1.isEmpty() || root2 != null || !st2.isEmpty()) {
+            while(root1 != null) {
+                st1.push(root1);
+                root1 = root1.left;
+            }
+            while(root2 != null) {
+                st2.push(root2);
+                root2 = root2.left;
+            }
+            if(st2.isEmpty() || (!st1.isEmpty() && st1.peek().val <= st2.peek().val)) {
+                root1 = st1.pop();
+                res.add(root1.val);
+                root1 = root1.right;
             } else {
-                res.add(tree2.get(q));
-                q++;
+                root2 = st2.pop();
+                res.add(root2.val);
+                root2 = root2.right;
             }
         }
         
-        while(p < m) {
-            res.add(tree1.get(p++));
-        }
-        
-        while(q < n) {
-            res.add(tree2.get(q++));
-        }
         
         return res;
-    }
-    
-    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
-        List<Integer> tree1 = new ArrayList<Integer>();
-        List<Integer> tree2 = new ArrayList<Integer>();
-        
-        helper(root1, tree1);
-        helper(root2, tree2);
-        
-        List<Integer> tree = merge(tree1, tree2);
-        
-        return tree;
     }
 }
