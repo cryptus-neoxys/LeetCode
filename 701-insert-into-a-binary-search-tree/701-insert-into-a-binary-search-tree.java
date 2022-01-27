@@ -13,24 +13,7 @@
  *     }
  * }
  */
-class Solution {
-    
-    public void helper(TreeNode root, int val) {
-        if(val < root.val) {
-            if(root.left != null) helper(root.left, val);
-            else {
-                root.left = new TreeNode(val);
-                return;
-            }
-        } else {
-            if(root.right != null) helper(root.right, val);
-            else {
-                root.right = new TreeNode(val);
-                return;
-            }
-        }
-    }
-    
+class Solution {    
     public TreeNode insertIntoBST(TreeNode root, int val) {
         if(root == null) return new TreeNode(val);
         if(val < root.val) {
