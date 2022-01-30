@@ -8,13 +8,14 @@ class Solution {
         pref[0] = 0;
         for(int i = 0; i < N; ++i) pref[i+1] = nums[i] + pref[i];
         
-		// initialise score to -1
+		// initialise maxScore to -1
         int maxScore = -1;
+        int onesToRight, zeroesToLeft, currScore;
         for(int i = 0; i < N + 1; ++i) {
 		
-            int onesToRight = pref[N] - pref[i];
-            int zeroesToLeft = i - pref[i];
-            int currScore = zeroesToLeft + onesToRight;
+            onesToRight = pref[N] - pref[i];
+            zeroesToLeft = i - pref[i];
+            currScore = zeroesToLeft + onesToRight;
             
 			// current score = zeroesToLeft + onesToRight
             if(currScore > maxScore) {
