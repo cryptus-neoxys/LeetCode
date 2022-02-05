@@ -10,6 +10,7 @@
  */
 class Solution {
     
+    // mergeList
     private ListNode mergeLists(ListNode l1, ListNode l2) {
         ListNode head = new ListNode();
         ListNode dummyHead = new ListNode(-1);
@@ -26,19 +27,15 @@ class Solution {
         }
         while(l1 != null) {
             dummyHead.next = l1;
-            System.out.println("l1: " + l1.val);
             l1 = l1.next;
             dummyHead = dummyHead.next;
         }
-        
         while(l2 != null ) {
             dummyHead.next = l2;
             l2 = l2.next;
             dummyHead = dummyHead.next;
         }
-        
         dummyHead = head;
-        
         return head.next.next;
     }
     
@@ -49,17 +46,9 @@ class Solution {
         for(int i = 0; i < lists.length/2; ++i) {
             newLists[i] = mergeLists(lists[2*i], lists[2*i + 1]);
         }
-        // _DEBUG
-        // for(ListNode list: newLists) {
-        //     while(list.next != null) {
-        //         System.out.println(list.val);
-        //         list = list.next;
-        //     }
-        // }
         if(newLists[newLists.length - 1] == null) {
             newLists[newLists.length - 1] = lists[lists.length - 1];
         }
-        
         return mergeKLists(newLists);
     }
 }
