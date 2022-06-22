@@ -4,12 +4,12 @@ class Solution {
         // System.out.println(Arrays.toString(nums));
         
         for(int it: nums) {
-            pq.add(it);
+            pq.offer(it);
             if(pq.size() > k) pq.poll();
         }
         
         // System.out.println(pq);
         
-        return pq.poll();
+        return pq.peek();
     }
 }
